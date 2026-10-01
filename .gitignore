@@ -1,0 +1,17 @@
+# Базы данных
+*.db
+*.sqlite
+*.sqlite3
+
+# Резервные копии
+backups/
+*.bak
+
+# Кэш Python
+__pycache__/
+*.pyc
+
+# Экспортированные файлы
+*.csv
+*.txt
+.ipynb_checkpoints/
