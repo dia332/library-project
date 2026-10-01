@@ -68,3 +68,22 @@ def add_book(title, author, year, quantity=1):
     conn.commit()
     conn.close()
     print(f"Книга '{title}' добавлена.")
+
+
+def add_reader(last_name, first_name, student_card, group_name, phone):
+    """
+    Добавляет нового читателя в базу данных.
+    """
+    conn = get_connection()
+    cursor = conn.cursor()
+    try:
+        cursor.execute('''
+            INSERT INTO readers (last_name, first_name, student_card, group_name, phone)
+            VALUES (?, ?, ?, ?, ?)
+        ''', (last_name, first_name, student_card, group_name, phone))
+        conn.commit()
+        print(f"Читатель {last_name} {first_name} добавлен.")
+    except sqlite3.IntegrityError:
+        print(f"Ошибка: читатель с билетом {student_card} уже существует.")
+    finally:
+        conn.close()
