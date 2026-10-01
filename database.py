@@ -55,3 +55,16 @@ def init_database():
 
 if __name__ == "__main__":
     init_database()
+
+
+def add_book(title, author, year, quantity=1):
+    """Добавляет новую книгу в базу данных."""
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute('''
+        INSERT INTO books (title, author, year, quantity)
+        VALUES (?, ?, ?, ?)
+    ''', (title, author, year, quantity))
+    conn.commit()
+    conn.close()
+    print(f"Книга '{title}' добавлена.")
